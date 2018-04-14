@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="生活不止眼前的苟且，还有远方和前端">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="30°猿">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【css进阶】css布局谋篇-从圣杯到grid"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="生活不止眼前的苟且，还有远方和前端" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="30°猿"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>【css进阶】css布局谋篇-从圣杯到grid - 30°猿</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">30°猿</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                首页
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/zachary9999">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>【css进阶】css布局谋篇-从圣杯到grid</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-04-14
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>不谋全局者，不足谋一域。对于css零碎的知识掌握了很多，那么如何做出一个漂亮的网页、网站。宏观上这就需要先来进行页面的布局。本文不做深入基础性知识讲解，只讲核心，方便速记和选择区分。</p>
+<p>现在来实现一个经典的三列布局：高度固定，左右两列宽度固定，中间自适应。<br>左|中|右。<br>从双飞翼布局讲起，到最近的gird布局。<br>默认容器300px高度，左右两个模块宽都为150px。</p>
+<h1 id="一、圣杯布局"><a href="#一、圣杯布局" class="headerlink" title="一、圣杯布局"></a>一、圣杯布局</h1><p>一句话概括就是:<br>1.容器设置左右padding分别为左右子模块的宽度,左右子元素向左浮动;2.左子元素margin：-100%+right:容器左padding距离；3.右侧子元素maring:-(容器右padding值)即可；中间保持不变。</p>
+<ul>
+<li>html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;grail&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;center&quot;&gt;center&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>css<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.grail&#123;</span><br><span class="line">  padding-left: 150px;</span><br><span class="line">  padding-right: 150px;</span><br><span class="line">&#125;</span><br><span class="line">.grail .center&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  float: left;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.grail .left&#123;</span><br><span class="line">  margin-left:-100%;</span><br><span class="line">  right:150px;</span><br><span class="line">  position: relative;</span><br><span class="line">  float: left;</span><br><span class="line">&#125;</span><br><span class="line">.grail .right&#123;</span><br><span class="line">	float: left;</span><br><span class="line">	margin-right: -150px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注：左边模块的margin:-100%是相对于容器.container。</p>
+<h1 id="二、双飞翼布局"><a href="#二、双飞翼布局" class="headerlink" title="二、双飞翼布局"></a>二、双飞翼布局</h1><p>与圣杯布局相比结构基本一样，center外层多包了一层盒子。css样式上一个是用padding,一个是用margin。</p>
+<ul>
+<li>html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;doublewing&quot;&gt;</span><br><span class="line">       &lt;div class=&quot;center-box&quot;&gt;</span><br><span class="line">           &lt;div class=&quot;center&quot;&gt;&lt;/div&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">       &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;</span><br><span class="line">       &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;</span><br><span class="line">   &lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>css<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.doublewing .center-box &#123;</span><br><span class="line">	width: 100%;</span><br><span class="line">    float: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.doublewing .center-box .center &#123;</span><br><span class="line">    margin-left: -150px;</span><br><span class="line">    margin-right: -150px;</span><br><span class="line">&#125;</span><br><span class="line">.doublewing .left&#123;</span><br><span class="line">	float: left;</span><br><span class="line">	margin-left: -100%;</span><br><span class="line">&#125;</span><br><span class="line">.doublewing .right&#123;</span><br><span class="line">	float: left;</span><br><span class="line">	margin-left: -150px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>两者用到浮动、负边距、position:relative等，万变不离其宗。</p>
+</blockquote>
+<h1 id="三、简化的float布局"><a href="#三、简化的float布局" class="headerlink" title="三、简化的float布局"></a>三、简化的float布局</h1><p>简言之：左右分别左右浮动</p>
+<ul>
+<li><p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;simplefloat&quot;&gt;</span><br><span class="line">  	&lt;div class=&quot;left&quot;&gt;Left&lt;/div&gt;</span><br><span class="line">  	&lt;div class=&quot;right&quot;&gt;Right&lt;/div&gt;</span><br><span class="line">  	&lt;div class=&quot;center&quot;&gt;Center&lt;/div&gt;</span><br><span class="line">  &lt;/section&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.simplefloat .left&#123;</span><br><span class="line">	float: left;</span><br><span class="line">&#125;</span><br><span class="line"> .simplefloat .right&#123;</span><br><span class="line">	float: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="四、绝对定位"><a href="#四、绝对定位" class="headerlink" title="四、绝对定位"></a>四、绝对定位</h1><ul>
+<li><p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;absolute&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;</span><br><span class="line">	&lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;</span><br><span class="line">	&lt;div class=&quot;center&quot;&gt;center(absolute)&lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.absolute&#123;</span><br><span class="line">  	position: relative;</span><br><span class="line">  &#125;</span><br><span class="line">  .absolute .center&#123;</span><br><span class="line">  	position: absolute;</span><br><span class="line">  	top: 0;</span><br><span class="line">  	left:150px;</span><br><span class="line">  	right:150px;</span><br><span class="line">  &#125;</span><br><span class="line">  .absolute .left&#123;</span><br><span class="line">  	position: absolute;</span><br><span class="line">  	left: 0;</span><br><span class="line">  &#125;</span><br><span class="line">  .absolute .right&#123;</span><br><span class="line">  	position: absolute;</span><br><span class="line">  	right: 0;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="五、flex布局"><a href="#五、flex布局" class="headerlink" title="五、flex布局"></a>五、flex布局</h1><ul>
+<li><p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &lt;section class=&quot;flex&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;</span><br><span class="line">	&lt;div class=&quot;center&quot;&gt;center(flex)&lt;/div&gt;</span><br><span class="line">	&lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.flex&#123;</span><br><span class="line">	display: flex;</span><br><span class="line">&#125;</span><br><span class="line">.flex .center&#123;</span><br><span class="line">	flex: 1;</span><br><span class="line">&#125;</span><br><span class="line">.flex .left ,.flex .right&#123;</span><br><span class="line">  width: 150px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="六、table布局"><a href="#六、table布局" class="headerlink" title="六、table布局"></a>六、table布局</h1><ul>
+<li><p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;table&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;center&quot;&gt;center(table)&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.table &#123;</span><br><span class="line">    display: table;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.table .center &#123;</span><br><span class="line">    display: table-cell;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.table .left,</span><br><span class="line">.table .right &#123;</span><br><span class="line">    width: 150px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="七、grid布局"><a href="#七、grid布局" class="headerlink" title="七、grid布局"></a>七、grid布局</h1><ul>
+<li><p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;grid&quot;&gt;</span><br><span class="line">       &lt;div class=&quot;left&quot;&gt;left&lt;/div&gt;</span><br><span class="line">       &lt;div class=&quot;center&quot;&gt;center(grid)&lt;/div&gt;</span><br><span class="line">       &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;</span><br><span class="line">   &lt;/section&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.grid&#123;</span><br><span class="line">	display: grid;</span><br><span class="line">	grid-template-columns:150px auto 150px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>参考资料：</p>
+<p>圣杯布局：<br><a href="http://alistapart.com/article/holygrail" target="_blank" rel="noopener">http://alistapart.com/article/holygrail</a></p>
+<p>Flex 布局教程：语法篇:<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$</a></p>
+<p>CSS Grid布局模块简介<br><a href="https://www.w3cplus.com/css3/introduction-css-grid-layout-module.html" target="_blank" rel="noopener">https://www.w3cplus.com/css3/introduction-css-grid-layout-module.html</a></p>
+
+
+                
+            </div>
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+<footer>
+    
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="article-footer-copyright">
+    添加你的版权信息
+</div>
+    </div>
+    
+
+</footer>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/zachary9999" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2018 30°猿<br></p>
+                <!--<p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>-->
+                <!--<p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>-->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
