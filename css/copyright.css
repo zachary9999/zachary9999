@@ -1,0 +1,8 @@
+.article-footer-copyright {
+  border: 1px dashed;
+  text-align: center;
+}
+.article-footer-copyright .copylink {
+  text-decoration: none;
+  color: #555;
+}
