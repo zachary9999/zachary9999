@@ -152,15 +152,31 @@
 
             <!-- Tags and categories -->
            
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/css/">#css</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
 
             <!-- Gallery -->
             
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>不谋全局者，不足谋一域。对于css零碎的知识掌握了很多，那么如何做出一个漂亮的网页、网站。宏观上这就需要先来进行页面的布局   。本文不做深入基础性知识讲解，只讲核心，方便速记和选择区分。</p>
+                <p>不谋全局者，不足谋一域。对于css零碎的知识掌握了很多，那么如何做出一个漂亮的网页、网站。宏观上这就需要先来进行页面的布局。css的知识看似简单入门容易，但是提高水平会遇到很多瓶颈，本人也是踩着坑慢慢趟。希望跟大家一起学习提高。文中难免疏漏和不足，请谅解。</p>
+<p>css中有很多自己知道的特性，但从未总结或者概念化，没有一个清晰的思路和概念危害是很大的。所以文中会把很多东西用简单的语言描述总结，或者引用其他书中、文章中的概念，例如《css世界》一书，我买的是张鑫旭的亲笔签名版O(∩_∩)O。</p>
 <p>现在来实现一个经典的三列布局：高度固定，左右两列宽度固定，中间自适应。<br>左|中|右。<br>从双飞翼布局讲起，到最近的gird布局。<br>默认容器300px高度，左右两个模块宽都为150px。<br><a href="https://zachary9999.github.io/css-forward/fromHolygrailToGrid-layout.html" target="_blank" rel="noopener">戳此浏览所有布局</a></p>
 <h1 id="一、圣杯布局"><a href="#一、圣杯布局" class="headerlink" title="一、圣杯布局"></a>一、圣杯布局</h1><p>一句话概括就是:<br>1.容器设置左右padding分别为左右子模块的宽度,左右子元素向左浮动;2.左子元素margin：-100%+right:容器左padding距离；3.右侧子元素maring:-(容器右padding值)即可；中间保持不变。</p>
+<p>特点：利用padding布局、子元素负边距（百分比边距）、浮动。</p>
 <ul>
 <li>html</li>
 </ul>
@@ -169,7 +185,7 @@
 <li>css<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.grail&#123;</span><br><span class="line">  padding-left: 150px;</span><br><span class="line">  padding-right: 150px;</span><br><span class="line">&#125;</span><br><span class="line">.grail .center&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  float: left;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line">.grail .left&#123;</span><br><span class="line">  margin-left:-100%;</span><br><span class="line">  right:150px;</span><br><span class="line">  position: relative;</span><br><span class="line">  float: left;</span><br><span class="line">&#125;</span><br><span class="line">.grail .right&#123;</span><br><span class="line">	float: left;</span><br><span class="line">	margin-right: -150px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>注：左边模块的margin:-100%是相对于容器.container。</p>
+<p>注：左边模块的margin:-100%是相对于容器.container。<br>中间模块设置为浮动元素具有“包裹特性”不会像“流体”布局一样自动撑（width:atuo）开。所以要100%宽度。</p>
 <h1 id="二、双飞翼布局"><a href="#二、双飞翼布局" class="headerlink" title="二、双飞翼布局"></a>二、双飞翼布局</h1><p>与圣杯布局相比结构基本一样，center外层多包了一层盒子。css样式上一个是用padding,一个是用margin。</p>
 <ul>
 <li>html</li>
@@ -182,7 +198,8 @@
 <blockquote>
 <p>两者用到浮动、负边距、position:relative等，万变不离其宗。</p>
 </blockquote>
-<h1 id="三、简化的float布局"><a href="#三、简化的float布局" class="headerlink" title="三、简化的float布局"></a>三、简化的float布局</h1><p>简言之：左右分别左右浮动</p>
+<h1 id="三、简化的float布局"><a href="#三、简化的float布局" class="headerlink" title="三、简化的float布局"></a>三、简化的float布局</h1><p>简言之：左右分别左右浮动。中间不设置宽度，请问为什么不设置宽度？</p>
+<p>很多时候开发总都会发现block元素会自动撑开，默认宽度100%;自动撑满容器，此时如果设置宽度width:100%，则会失去“流体”特性。详细深挖请看《css世界》一书。</p>
 <ul>
 <li><p>html</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;simplefloat&quot;&gt;</span><br><span class="line">  	&lt;div class=&quot;left&quot;&gt;Left&lt;/div&gt;</span><br><span class="line">  	&lt;div class=&quot;right&quot;&gt;Right&lt;/div&gt;</span><br><span class="line">  	&lt;div class=&quot;center&quot;&gt;Center&lt;/div&gt;</span><br><span class="line">  &lt;/section&gt;</span><br></pre></td></tr></table></figure>
@@ -225,9 +242,10 @@
 </ul>
 <hr>
 <p>参考资料：</p>
+<p>《css世界》张鑫旭 著</p>
 <p>圣杯布局：<br><a href="http://alistapart.com/article/holygrail" target="_blank" rel="noopener">http://alistapart.com/article/holygrail</a></p>
-<p>Flex 布局教程：语法篇:<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$</a></p>
-<p>CSS Grid布局模块简介<br><a href="https://www.w3cplus.com/css3/introduction-css-grid-layout-module.html" target="_blank" rel="noopener">https://www.w3cplus.com/css3/introduction-css-grid-layout-module.html</a></p>
+<p>Flex 布局教程：语法篇: 阮一峰<br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$</a></p>
+<p>CSS Grid布局模块简介 大漠<br><a href="https://www.w3cplus.com/css3/introduction-css-grid-layout-module.html" target="_blank" rel="noopener">https://www.w3cplus.com/css3/introduction-css-grid-layout-module.html</a></p>
 
 
                 
